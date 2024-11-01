@@ -46,6 +46,9 @@ print(chat_completion.choices[0].message.content)
 # > System é usada para fornecer informações de configuração ou contexto que tenta direcionar o comportamento do modelo
 # > User é usada como se fosse um input do usuário
 # > Assistant é a resposta do modelo
+# Por isso é importante manter o atributo "role" preenchido corretamente. Esse atributo define o papel de cada mensagem na interação com o chat, garantindo que o sequenciamento da conversa seja mantido de forma lógica e coerente.
+# Repare que o parametro messages é um array, ele serve como "memória/histórico" da sua interação com o GPT. O GPT irá responder de acordo com as informações desse array.
+# É importante lembrar que o histórico será contabilizado como tokens de entrada e consequentemente o custo irá aumentar de acordo com o tamanho do array messages!
 
 
 # repare que vc pode fazer a mesma interação usando a REST API da OpenAI... porém a biblioteca facilita nossa interação!
