@@ -1,0 +1,4 @@
+openai
+black
+ell
+python-dotenv
