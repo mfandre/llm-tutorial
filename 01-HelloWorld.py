@@ -1,5 +1,7 @@
 import os
 
+# Vamos brincar com a LLM GPT utilizando a biblioteca python da OpenAI. O objetivo é fazer uma interação simples com o ChatGPT para entender como iniciar nesse mundo de desenvolvimendo usando GenAI.
+
 ####################################
 # carregando variaveis de ambiente #
 ####################################
@@ -14,7 +16,6 @@ OPENAI_SERVICE_ACCOUNT_KEY = os.getenv("OPENAI_SERVICE_ACCOUNT_KEY")
 from openai import OpenAI
 
 client = OpenAI(
-    # This is the default and can be omitted
     api_key=OPENAI_SERVICE_ACCOUNT_KEY,
 )
 

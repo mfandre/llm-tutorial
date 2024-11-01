@@ -1,4 +1,3 @@
 openai
-black
-ell
+ell-ai
 python-dotenv

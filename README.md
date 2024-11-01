@@ -9,6 +9,5 @@
 > pip install -r requirements.txt
 
 - openai: biblioteca da OpenAI para usar ChatGPT (LLM)
-- ell: simplificando a interação com LLMs
-- black: auto code format
+- ell-ai: simplificando a interação com LLMs. https://docs.ell.so/installation
 - dotenv: carregar variaveis de ambiente
