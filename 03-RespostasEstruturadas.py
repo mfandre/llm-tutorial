@@ -1,5 +1,8 @@
-# Agora vamos trabalhar com outputs estruturados, de forma simples, quero retornar uma entidade (objeto) preenchida ao invés de um string!
+# Agora vamos trabalhar com outputs estruturados, de forma simples, quero retornar uma entidade (objeto) preenchida ao invés de uma string!
 # Para isso iremos usar ell complex que nos ajudará nessa tarefa!
+# Faremos um taggeador de documentos, ele recebe um texto e tenta extrair duas tags de forma automática: Area e Assunto.
+#
+# Vamos começar
 
 # importanto bibliotecas que usaremos
 import os
@@ -25,10 +28,10 @@ class DocumentTags(BaseModel):
     subject: str = Field(description="The subject of the document")
 
 
-# Perceba ques estamos colocando o parametro response_format que será usado para transformar a resposta.
+# Perceba ques estamos colocando o parametro response_format que será usado para transformar a resposta na entidate que criamos acima.
 @ell.complex(model="gpt-4o-mini", response_format=DocumentTags)
 def generate_tags(document_content: str):
-    """You are a document tagger generator. Given the content of a document, you need to return a structured tags about the document."""
+    """You are a document tagger generator. Given the content of a document, you need to return a structured tags about the document. If you cant infere the attribute you must fill with None."""
     return f"Generate tags for the follow document {document_content}"
 
 
