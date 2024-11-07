@@ -39,6 +39,8 @@ print(chat_completion)
 print("--------------")
 print(chat_completion.choices[0].message.content)
 
+# > $ Hello World! Como posso ajudá-lo hoje?
+
 # Pense que uma LLM é um função que recebe um texto de entrada (um prompt) e retorna um texto de saída (resposta)
 # prompt -> llm -> resposta
 # nesse caso demos duas instruções

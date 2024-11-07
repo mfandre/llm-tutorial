@@ -20,14 +20,14 @@ ell.init(verbose=True, default_client=client)
 
 
 # Aqui estou falando que minha função hello irá usar o modelo gpt-4o-mini e responderá o prompts utlizando no máx 100 tokens.
-@ell.simple(model="gpt-4o-mini", max_tokens=100)
+@ell.simple(model="gpt-4o-mini", max_tokens=100, client=client)
 def hello(name: str):
-    """You are a helpful assistant."""  # System prompt
+    """Você é um assistente gentil e prestativo."""  # System prompt
     return f"Diga olá para {name}!"  # User prompt
 
 
 # Ao inves de usar Python DocString como system roles nós podemos definir de forma explícita no nosso retorno.
-@ell.simple(model="gpt-4o-mini")
+@ell.simple(model="gpt-4o-mini", client=client)
 def hello2(name: str):
     return [
         ell.system("Você é um assistente gentil e prestativo."),
