@@ -17,7 +17,7 @@ job = client.fine_tuning.jobs.create(training_file=file_obj.id, model="davinci-0
 print(job.fine_tuned_model)
 
 
-# Quando o job finalizar você poderá acessar o nome do modelo criar para ser usado...
+# Quando o job finalizar você poderá acessar o nome do modelo criado para ser usado posteriormente
 model_name = job.fine_tuned_model
 
 completion = client.chat.completions.create(
