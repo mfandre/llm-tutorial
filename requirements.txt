@@ -1,3 +1,6 @@
 openai
 ell-ai
 python-dotenv
+numpy
+faiss
+# faiss-cpu # or

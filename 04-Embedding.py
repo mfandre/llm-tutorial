@@ -19,9 +19,12 @@ documents = [
 
 # Gerar embeddings para os documentos
 document_embeddings = [
-    client.embeddings.create(input=doc, model="text-embedding-ada-002")["data"][0]["embedding"]
+    client.embeddings.create(input=doc, model="text-embedding-ada-002")
+    .data[0]
+    .embedding
     for doc in documents
 ]
+
 
 # Função para calcular similaridade (usando produto escalar)
 def cosine_similarity(vec1, vec2):
@@ -30,7 +33,11 @@ def cosine_similarity(vec1, vec2):
 
 # Busca semântica
 query = "Quando devo trocar o filtro hidráulico?"
-query_embedding = client.embeddings.create(input=query, model="text-embedding-ada-002")["data"][0]["embedding"]
+query_embedding = (
+    client.embeddings.create(input=query, model="text-embedding-ada-002")
+    .data[0]
+    .embedding
+)
 
 # Encontrar o documento mais relevante
 similarities = [
