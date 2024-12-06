@@ -100,7 +100,8 @@ Fim do Contexto
     ]
 
 
-# Base de conhecimento de manutenção preventiva da empresa
+# Base de conhecimento de manutenção preventiva da empresa.
+# No mundo real esse corpora é composto pelo conteúdo de aquivos que foram parseados (pdf, excel, docx, txt...) e servirão como base de conhecimento.
 corpora = [
     "O código de erro E102 indica superaquecimento do motor. Verifique o nível de óleo e o sistema de resfriamento.",
     "Recomenda-se trocar o óleo do gerador a cada 250 horas de operação ou a cada 6 meses, o que ocorrer primeiro. Verifique também o filtro de óleo a cada troca.",
