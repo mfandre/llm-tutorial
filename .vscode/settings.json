@@ -6,8 +6,8 @@
         "editor.formatOnSave": true
     },
     // "python.defaultInterpreterPath": "/backend/.venv/bin",
-    "python.defaultInterpreterPath": "C:\\Users\\andre.mattos\\OneDrive - Eneva S.A\\Documentos\\_projetos\\llm-tutorial\\.venv\\Scripts",
-    
+    "python.terminal.activateEnvInCurrentTerminal": true,
     "python.terminal.activateEnvironment": true,
+    "python.defaultInterpreterPath": "C:\\Users\\andre.mattos\\OneDrive - Eneva S.A\\Documentos\\_projetos\\Arquitetura\\llm-tutorial\\.venv\\Scripts",
     "git.ignoreLimitWarning": true
 }
