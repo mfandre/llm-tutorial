@@ -1,3 +1,9 @@
+# O objetivo desse código é mostrar um exemplo simples de multi agents. A idéia ter dois agentes, um que recebe um texto e resume. O outro agente é responsável por ler os resumos e tomar uma decisão.
+# Toda a comunicação é feita por filas (nessa caso para exemplo estou usando um bliboteca baseada em sqlite, só pra manter isso simples!), tentei trazer essa complexidade para mostrar como isso funcionaria em uma ambiente distribuído.
+
+# Deforma simplificada o processo segue o seguinte fluxo:
+# Produtor (API, console...) gera um texto de entrada => Fila de Resumo => Agente especializado em Resumo pega o texto de entrada e Gera Resumo => Fila de decisão => Agente especializado em decisao gera uma decisao baseado no resumo => Fim
+
 import os
 import numpy as np
 from openai import OpenAI
@@ -29,6 +35,7 @@ ell.config.verbose = True
 ell.config.register_model(MODEL, client)
 
 
+# LLM responsável pelo Resumo
 @ell.simple(model="llama3.1", client=client)
 def analyse_and_summary(text: str):
     return [
@@ -37,6 +44,7 @@ def analyse_and_summary(text: str):
     ]
 
 
+# LLM responsável pela Decisão
 @ell.simple(model="llama3.1", client=client)
 def take_action(summary: str):
     return [
@@ -55,11 +63,13 @@ if __name__ == "__main__":
 
     db_path = "queue.sqlite3"
 
+    # Trecho que representa uma aplicação produtra ("Producer")
     if len(args) == 0:
         print("--- Init start Producer ---")
         data = r"Data shows that sales increased by 20% in the last quarter due to a new marketing campaign."
         q1 = LiteQueue(db_path, queue_name="topic1")
         q1.put(data)
+    # Trecho que representa nosso agente responsável pela sumarização
     elif args[0] == "summarizer":
         print("--- Init Summarizer ---")
         q1 = LiteQueue(db_path, queue_name="topic1")
@@ -73,6 +83,7 @@ if __name__ == "__main__":
             summary = analyse_and_summary(str(data.data))
             q2.put(summary)
             time.sleep(0.1)
+    # Trecho que representa nosso agente responsável pela decisão
     elif args[0] == "actioner":
         print("--- Init Actioner ---")
         q2 = LiteQueue(db_path, queue_name="topic2")
@@ -87,11 +98,9 @@ if __name__ == "__main__":
             time.sleep(0.1)
 
 
+# Sem uso de filas a lógica seria algo assim:
 # # Fluxo de comunicação entre os agentes
-
 # summary = agent1(data)
-
 # decision = agent2(summary)
-
 # print(f"Resumo do Agente 1: {summary}")
 # print(f"Decisão do Agente 2: {decision}")
