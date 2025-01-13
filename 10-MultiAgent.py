@@ -35,7 +35,7 @@ ell.config.verbose = True
 ell.config.register_model(MODEL, client)
 
 
-# LLM responsável pelo Resumo
+# LLM responsável pelo Resumo, será usado no agente "Resumidor"
 @ell.simple(model="llama3.1", client=client)
 def analyse_and_summary(text: str):
     return [
@@ -44,7 +44,7 @@ def analyse_and_summary(text: str):
     ]
 
 
-# LLM responsável pela Decisão
+# LLM responsável pela Decisão, será usado no agente "Decisor"
 @ell.simple(model="llama3.1", client=client)
 def take_action(summary: str):
     return [
@@ -62,6 +62,8 @@ if __name__ == "__main__":
     print(args)
 
     db_path = "queue.sqlite3"
+
+    # O ideal aqui era que cada um desses trechos fossem separados em arquivos. Porém pra facilitar o tutorial, coloquei tudo em um único arquivo.
 
     # Trecho que representa uma aplicação produtra ("Producer")
     if len(args) == 0:
@@ -97,6 +99,14 @@ if __name__ == "__main__":
             print(action)
             time.sleep(0.1)
 
+
+# Para rodar o exemplo abra 3 terminais (consoles).
+# No primeiro execute:
+# > python 10-MultiAgent.py actioner
+# No segundo execute:
+# > python  10-MultiAgent.py summarizer
+# No terceiro execute:
+# > python 10-MultiAgent.py
 
 # Sem uso de filas a lógica seria algo assim:
 # # Fluxo de comunicação entre os agentes
