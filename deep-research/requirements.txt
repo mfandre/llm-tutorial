@@ -1,0 +1,6 @@
+pydantic-ai
+faiss-cpu
+sentence-transformers 
+python-dotenv 
+numpy
+python-dotenv
