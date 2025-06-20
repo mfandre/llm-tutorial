@@ -17,7 +17,7 @@ from pretty_print import pretty_print_report
 load_dotenv(override=True)
 
 
-# --- 1. CONFIGURAÇÃO E CARREGAMENTO DO ÍNDICE ---
+# --- CONFIGURAÇÃO E CARREGAMENTO DO ÍNDICE ---
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
@@ -44,10 +44,10 @@ try:
     with open(ARQUIVO_MAPA_DOCUMENTOS, 'rb') as f:
         document_chunks = pickle.load(f)
 except FileNotFoundError:
-    print("ERRO: Arquivos de índice não encontrados. Execute 'criar_indice.py' primeiro.")
+    print("ERRO: Arquivos de índice não encontrados. Execute 'index.py' primeiro.")
     exit()
 
-# --- 2. DEFINIR A FERRAMENTA DE PESQUISA LOCAL ---
+# --- DEFINIR A FERRAMENTA DE PESQUISA LOCAL ---
 @agent.tool
 def local_vector_search(context: RunContext, query: str) -> str:
     """
@@ -68,7 +68,7 @@ def local_vector_search(context: RunContext, query: str) -> str:
     return "\n\n---\n\n".join(results)
 
 
-# --- 4. CONFIGURAR E EXECUTAR O PydanticAI ---
+# --- CONFIGURAR E EXECUTAR O PydanticAI ---
 # Uma pergunta que requer a combinação de informações dos arquivos
 query = """
 Qual a relação entre o Parque Lage e o Jardim Botânico, 
